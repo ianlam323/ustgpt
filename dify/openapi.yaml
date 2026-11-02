@@ -1,0 +1,94 @@
+openapi: 3.0.3
+info:
+  title: HKUST Smart Transport API
+  version: 1.0.0
+servers:
+  - url: https://YOUR-PUBLIC-HTTPS-HOST
+paths:
+  /tools/kmb_eta:
+    get:
+      operationId: kmb_eta
+      summary: Get live KMB bus arrivals
+      parameters:
+        - {name: stop_id, in: query, required: true, schema: {type: string}}
+        - {name: route, in: query, required: true, schema: {type: string}}
+        - {name: service_type, in: query, required: false, schema: {type: string, default: "1"}}
+      responses:
+        "200": {description: Live KMB ETA, content: {application/json: {schema: {type: object, additionalProperties: true}}}}
+  /tools/kmb_route_stops:
+    get:
+      operationId: kmb_route_stops
+      summary: Resolve KMB route stop IDs for a direction and service type
+      parameters:
+        - {name: route, in: query, required: true, schema: {type: string}}
+        - {name: direction, in: query, required: true, schema: {type: string, enum: [O, I]}}
+        - {name: service_type, in: query, required: false, schema: {type: string, default: "1"}}
+      responses:
+        "200": {description: Ordered KMB stops, content: {application/json: {schema: {type: object, additionalProperties: true}}}}
+  /tools/citybus_eta:
+    get:
+      operationId: citybus_eta
+      summary: Get live Citybus arrivals
+      parameters:
+        - {name: stop_id, in: query, required: true, schema: {type: string}}
+        - {name: route, in: query, required: true, schema: {type: string}}
+      responses:
+        "200": {description: Live Citybus ETA, content: {application/json: {schema: {type: object, additionalProperties: true}}}}
+  /tools/citybus_route_stops:
+    get:
+      operationId: citybus_route_stops
+      summary: Resolve Citybus route stop IDs for a direction
+      parameters:
+        - {name: route, in: query, required: true, schema: {type: string}}
+        - {name: direction, in: query, required: true, schema: {type: string, enum: [inbound, outbound]}}
+      responses:
+        "200": {description: Ordered Citybus stops, content: {application/json: {schema: {type: object, additionalProperties: true}}}}
+  /tools/mtr_eta:
+    get:
+      operationId: mtr_eta
+      summary: Get live MTR train arrivals
+      parameters:
+        - {name: line, in: query, required: true, schema: {type: string}}
+        - {name: sta, in: query, required: true, schema: {type: string}}
+      responses:
+        "200": {description: Live MTR ETA, content: {application/json: {schema: {type: object, additionalProperties: true}}}}
+  /tools/compare_routes:
+    post:
+      operationId: compare_routes
+      summary: Rank supplied candidate itineraries by time, fare and transfers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [routes]
+              properties:
+                routes:
+                  type: array
+                  items:
+                    type: object
+                    required: [name, segments, transfers]
+                    properties:
+                      name: {type: string}
+                      transfers: {type: integer}
+                      total_duration_min: {type: number, nullable: true}
+                      total_fare_hkd: {type: number, nullable: true}
+                      total_walking_m: {type: number, nullable: true}
+                      segments:
+                        type: array
+                        items:
+                          type: object
+                          required: [mode, operator, route_or_line, board, alight]
+                          properties:
+                            mode: {type: string}
+                            operator: {type: string}
+                            route_or_line: {type: string}
+                            board: {type: string}
+                            alight: {type: string}
+                            fare_hkd: {type: number, nullable: true}
+                            duration_min: {type: number, nullable: true}
+                            walking_m: {type: number, nullable: true}
+                            source: {type: string, nullable: true}
+      responses:
+        "200": {description: Route ranking, content: {application/json: {schema: {type: object, additionalProperties: true}}}}
