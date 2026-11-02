@@ -4,8 +4,10 @@ from typing import Optional
 import httpx
 from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel, Field
+from backend.ustgpt_data_api import router as local_data_router
 
 app = FastAPI(title="HKUST Smart Transport API", version="1.0.0")
+app.include_router(local_data_router)
 HK_TZ = ZoneInfo("Asia/Hong_Kong")
 KMB = "https://data.etabus.gov.hk/v1/transport/kmb"
 CITYBUS = "https://rt.data.gov.hk/v2/transport/citybus"
