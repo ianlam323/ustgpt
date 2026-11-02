@@ -1,0 +1,17 @@
+﻿dataset,provider,source_url,format,refresh,usage
+TD bus route master,Transport Department,https://static.data.gov.hk/td/routes-fares-xml/ROUTE_BUS.xml,XML,twice monthly,route/operator/destination
+TD bus route stop sequence,Transport Department,https://static.data.gov.hk/td/routes-fares-xml/RSTOP_BUS.xml,XML,twice monthly,ordered route stops
+TD bus stop coordinates,Transport Department,https://static.data.gov.hk/td/routes-fares-xml/STOP_BUS.xml,XML,twice monthly,stop names and coordinates
+TD bus section fares,Transport Department,https://static.data.gov.hk/td/routes-fares-xml/FARE_BUS.xml,XML,twice monthly,section fares
+KMB live ETA,Transport Department/KMB,https://data.etabus.gov.hk/v1/transport/kmb/,JSON,about every minute,live arrivals
+Citybus live ETA,Citybus/Transport Department,https://rt.data.gov.hk/v2/transport/citybus/,JSON,about every minute,live arrivals
+MTR lines and stations,MTR Corporation,https://opendata.mtr.com.hk/data/mtr_lines_and_stations.csv,CSV,monthly,station and line reference
+MTR fares,MTR Corporation,https://opendata.mtr.com.hk/data/mtr_lines_fares.csv,CSV,monthly,standard fare table
+MTR Airport Express fares,MTR Corporation,https://opendata.mtr.com.hk/data/airport_express_fares.csv,CSV,monthly,Airport Express fares
+MTR barrier-free facilities,MTR Corporation,https://opendata.mtr.com.hk/data/barrier_free_facilities.csv,CSV,monthly,accessibility facilities
+MTR barrier-free categories,MTR Corporation,https://opendata.mtr.com.hk/data/barrier_free_access_category.csv,CSV,monthly,accessibility category definitions
+TD GMB route master,Transport Department,https://static.data.gov.hk/td/routes-fares-xml/ROUTE_GMB.xml,XML,twice monthly,Green minibus route/operator/destination
+TD GMB route stop sequence,Transport Department,https://static.data.gov.hk/td/routes-fares-xml/RSTOP_GMB.xml,XML,twice monthly,Ordered GMB route stops
+TD GMB stops/termini,Transport Department,https://static.data.gov.hk/td/routes-fares-xml/STOP_GMB.xml,XML,twice monthly,GMB stop/terminus reference and coordinates
+TD GMB section fares,Transport Department,https://static.data.gov.hk/td/routes-fares-xml/FARE_GMB.xml,XML,twice monthly,GMB section fares
+TD Green Minibus live ETA,Transport Department via DATA.GOV.HK,https://data.gov.hk/en-data/dataset/hk-td-sm_7-real-time-arrival-data-of-gmb,JSON/API,ETA about every minute,"Live arrivals; integrate as query-time API, not static KB data"
